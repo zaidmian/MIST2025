@@ -19,6 +19,8 @@ export const northAmericanCities = [
   {name: "Vaughan, Canada", latitude: 43.8262, longitude: -79.5562},
   {name: "Markham, Canada", latitude: 43.8599, longitude: -79.3350},
   {name: "Dallas, USA", latitude:  32.7767, longitude: -96.7970},
+  {name: "Ajax, Canada", latitude:  43.8611, longitude: -79.0259},
+  {name: "Scarborough, Canada", latitude: 43.7764, longitude: -79.2318},
 ]
 
 export const inspirationalContent = [
