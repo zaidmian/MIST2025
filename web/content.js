@@ -1,5 +1,5 @@
 // Predefined locations with coordinates
-export const locations = [
+export const northAmericanCities = [
   {name: "New York, USA", latitude: 40.7128, longitude: -74.006},
   {name: "Toronto, Canada", latitude: 43.6532, longitude: -79.3832},
   {name: "Chicago, USA", latitude: 41.8781, longitude: -118.2426},
@@ -12,14 +12,15 @@ export const locations = [
   {name: "Washington DC, USA", latitude:  38.9072, longitude: -77.0369},
   {name: "San Francisco, USA", latitude:  37.7749, longitude: -122.4194},
   {name: "Montreal, Canada", latitude:  45.5019, longitude: -73.5674},
-  {name: "Surrey, Canada", latitude:  49.1913, longitude: -122.8490}, [
+  {name: "Surrey, Canada", latitude:  49.1913, longitude: -122.8490},
   {name: "Halifax, Canada", latitude:  44.6509, longitude: -63.5923},
   {name: "Barrie, Canada", latitude:  44.3894, longitude: -79.6903},
   {name: "Mississauga, Canada", latitude:  43.5853, longitude: -79.6450},
   {name: "Vaughan, Canada", latitude: 43.8262, longitude: -79.5562},
   {name: "Markham, Canada", latitude: 43.8599, longitude: -79.3350},
   {name: "Dallas, USA", latitude:  32.7767, longitude: -96.7970},
-];
+]
+
 export const inspirationalContent = [
   {
     type: "hadith",
