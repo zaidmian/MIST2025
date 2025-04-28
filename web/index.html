@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<!--  TODO Rename this when we have a project title-->
+  <!--  TODO Rename this when we have a project title-->
   <title>Islamic Prayer Times</title>
 
   <!-- Bootstrap CSS -->
@@ -16,23 +16,30 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet"/>
 
   <!-- Custom CSS -->
-<!--  <link rel="stylesheet" href="styles.css"/>-->
+  <!--  <link rel="stylesheet" href="styles.css"/>-->
 </head>
 
 <body>
 <div class="container py-5">
 
-  <!--  TODO Layout goes in here (replace this div) -->
-  <div class="text-center py-5 px-3">
-    <h1>Bootstrap starter template</h1>
-    <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a
-      mostly barebones HTML document.</p>
-  </div>
+  <div class="container-fluid py-4">
 
-  <div class="row justify-content-center mb-4">
-    <div class="col-md-6" id="city-selector-container"></div>
-  </div>
+    <div class="row mb-3">
+      <header class="text-center">
+        <h1>Prayer Times</h1>
+        <p id="currentData">Today's date goes here</p>
+      </header>
+    </div>
 
+    <div class="row justify-content-center mb-4">
+      <div class="col-md-6" id="city-selector-container"></div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-8">Left side</div>
+      <div class="col-lg-4">Right side</div>
+    </div>
+  </div>
 
 </div>
 
