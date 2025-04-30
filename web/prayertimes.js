@@ -9,7 +9,7 @@ export class PrayerTimes {
   const currentDay = dateTime.getDate();
 
   // API URL for Aladhan API
-  const API = `https://api.aladhan.com/v1/timingsByAddress/${currentDay}-${currentMonth}-${currentYear}`?location;
+  const API = `https://api.aladhan.com/v1/timingsByAddress/${currentDay}-${currentMonth}-${currentYear}`?location.name;
 
   fetch(API)
     .then((response) => {
