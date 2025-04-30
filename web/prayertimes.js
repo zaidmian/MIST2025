@@ -23,13 +23,13 @@ export class PrayerTimes {
       const prayerTimes = {
         fajr: time.Fajr,
         sunrise: time.Sunrise,
-        dhuhr: time.Fajr,
-        asr: timings.Asr,
-        maghrib: timings.Maghrib,
-        isha: timings.Isha,
+        dhuhr: time.Dhuhr,
+        asr: time.Asr,
+        maghrib: time.Maghrib,
+        isha: time.Isha,
       };
 
-      Console.Log(prayerTimes);
+      console.log(prayerTimes);
       
     })
     .catch((error) => {
