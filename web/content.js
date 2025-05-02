@@ -5,9 +5,9 @@ export function showRandomInspiration() {
   const content = inspirationalContent[randomIndex];
 
   inspirationContent.innerHTML = `
-        <p class="inspiration-quote mb-2">${content.content}</p>
-        <p class="inspiration-source text-success">Source: ${content.source}</p>
-    `;
+        <p class="mb-2">${content.content}</p>
+        <p class="text-success mb-0">Source: ${content.source}</p>
+  `;
 }
 
 const inspirationalContent = [

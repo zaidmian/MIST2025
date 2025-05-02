@@ -1,5 +1,6 @@
 import {CitySelector} from "./location.js";
 import {showRandomInspiration} from "./content.js";
+import {getPrayerTimes} from "./prayertimes.js";
 
 // Initialize app on DOM load
 document.addEventListener("DOMContentLoaded", init);
@@ -15,6 +16,7 @@ function init() {
     console.log('Selected city:', selectedCity);
     // Here you would call your prayer time calculation function
     // calculatePrayerTimes(selectedCity.latitude, selectedCity.longitude);
+    getPrayerTimes(selectedCity);
   });
 
   newInspirationBtn.addEventListener("click", showRandomInspiration)

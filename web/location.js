@@ -44,9 +44,9 @@ export class CitySelector {
     });
     // Create dropdown UI
     this.container.innerHTML = `
-      <div class="city-selector">
-        <label for="city-dropdown" class="form-label">Select Your City:</label>
-        <div class="dropdown-container">
+    <form>
+      <div class="form-group row">
+        <div class="form-group col-md-6">
           <select id="city-dropdown" class="form-select">
             <option value="">-- Select a City --</option>
             ${sortedCities.map(city =>
@@ -55,9 +55,12 @@ export class CitySelector {
               </option>`
     ).join('')}
           </select>
+        </div>
+        <div class="form-group col-md-6">
           <button id="use-location" class="btn btn-outline-success">Use My Location</button>
         </div>
       </div>
+    </form>
     `;
   }
 
