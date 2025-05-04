@@ -60,7 +60,8 @@
     <div class="row mb-3">
       <header class="text-center">
         <h1>Prayer Times</h1>
-        <p id="currentData">Today's date goes here</p>
+        <p id="currentDate" class="mb-0 fs-5"></p>
+        <p id="currentTime" class="fs-4 fw-bold"></p>
       </header>
     </div>
 
@@ -194,6 +195,48 @@
 <!-- Custom JavaScript -->
 <script type="module" src="app.js"></script>
 
+<!-- Date/Time Display JavaScript -->
+<script>
+// Date and Time Display
+document.addEventListener('DOMContentLoaded', function() {
+  const dateElement = document.getElementById('currentDate');
+  const timeElement = document.getElementById('currentTime');
+  
+  // Format options for date display
+  const dateOptions = { 
+    weekday: 'long', 
+    year: 'numeric', 
+    month: 'long', 
+    day: 'numeric' 
+  };
+  
+  // Format options for time display
+  const timeOptions = { 
+    hour: '2-digit', 
+    minute: '2-digit', 
+    second: '2-digit',
+    hour12: true 
+  };
+  
+  // Update date and time
+  function updateDateTime() {
+    const now = new Date();
+    
+    // Update date display
+    dateElement.textContent = now.toLocaleDateString(undefined, dateOptions);
+    
+    // Update time display
+    timeElement.textContent = now.toLocaleTimeString(undefined, timeOptions);
+  }
+  
+  // Initial update
+  updateDateTime();
+  
+  // Update every second
+  setInterval(updateDateTime, 1000);
+});
+</script>
+
 <!-- Dark Mode JavaScript -->
 <script>
 // Dark Mode Implementation
@@ -242,6 +285,12 @@ document.addEventListener('DOMContentLoaded', function() {
     body.style.backgroundColor = '#121212';
     body.style.color = '#e0e0e0';
     
+    // Apply dark mode to date/time display
+    const dateElement = document.getElementById('currentDate');
+    const timeElement = document.getElementById('currentTime');
+    if (dateElement) dateElement.style.color = '#e0e0e0';
+    if (timeElement) timeElement.style.color = '#e0e0e0';
+    
     // Apply dark mode to cards
     const cards = document.querySelectorAll('.card');
     cards.forEach(card => {
@@ -284,6 +333,12 @@ document.addEventListener('DOMContentLoaded', function() {
     // Revert body and background to light mode
     body.style.backgroundColor = '';
     body.style.color = '';
+    
+    // Revert date/time display to light mode
+    const dateElement = document.getElementById('currentDate');
+    const timeElement = document.getElementById('currentTime');
+    if (dateElement) dateElement.style.color = '';
+    if (timeElement) timeElement.style.color = '';
     
     // Revert cards to light mode
     const cards = document.querySelectorAll('.card');
