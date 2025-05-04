@@ -11,26 +11,220 @@
   <!-- Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 
-  <!-- Google Fonts -->
+  <!-- Google Fonts - Enhanced with multiple weights -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet"/>
 
-  <!-- Dark Mode CSS -->
+  <!-- Enhanced Dark Mode CSS -->
   <style>
-    /* Dark Mode CSS */
-    body {
-      transition: background-color 0.3s ease, color 0.3s ease;
+    /* Base transitions for smooth mode switching */
+    * {
+      transition: all 0.3s ease;
     }
     
-    .card, .card-header, .list-group-item {
-      transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-    }
-    
+    /* Dark mode toggle button */
     #darkModeToggle {
-      transition: background-color 0.3s ease;
+      background-color: #333;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
     }
     
     #darkModeToggle:hover {
       opacity: 0.9;
+    }
+
+    /* DARK MODE STYLES */
+    
+    /* Basic elements */
+    body.dark-mode {
+      background-color: #121212;
+      color: #e0e0e0;
+      font-weight: 400;
+    }
+    
+    /* Cards and containers */
+    .dark-mode .card {
+      background-color: #1e1e1e;
+      border-color: #333;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) !important;
+    }
+    
+    .dark-mode .card-header {
+      background-color: #2d2d2d;
+      border-color: #333;
+      color: #e0e0e0;
+    }
+    
+    .dark-mode .card-body {
+      background-color: #1e1e1e;
+      color: #e0e0e0;
+    }
+    
+    .dark-mode .list-group-item {
+      background-color: #1e1e1e;
+      color: #e0e0e0;
+      border-color: #333;
+    }
+    
+    /* Make sure all text is readable */
+    .dark-mode h1, 
+    .dark-mode h2, 
+    .dark-mode h3, 
+    .dark-mode h4, 
+    .dark-mode h5, 
+    .dark-mode h6 {
+      color: #e0e0e0;
+      font-weight: 600;
+    }
+    
+    .dark-mode #currentDate,
+    .dark-mode #currentTime {
+      color: #e0e0e0;
+    }
+    
+    /* Colors and backgrounds */
+    .dark-mode .bg-secondary-subtle {
+      background-color: #2d2d2d !important;
+      color: #e0e0e0;
+    }
+    
+    .dark-mode .text-muted {
+      color: #aaa !important;
+    }
+    
+    /* Form elements */
+    .dark-mode .form-control,
+    .dark-mode .form-select {
+      background-color: #2d2d2d;
+      border-color: #444;
+      color: #e0e0e0;
+    }
+    
+    .dark-mode .form-control:focus,
+    .dark-mode .form-select:focus {
+      background-color: #333;
+      border-color: #0d6efd;
+      box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+      color: #ffffff;
+    }
+    
+    .dark-mode .form-control::placeholder {
+      color: #888;
+    }
+    
+    .dark-mode .form-check-input {
+      background-color: #2d2d2d;
+      border-color: #555;
+    }
+    
+    .dark-mode .form-check-input:checked {
+      background-color: #0d6efd;
+      border-color: #0d6efd;
+    }
+    
+    .dark-mode .form-check-label {
+      color: #e0e0e0;
+    }
+    
+    /* Buttons */
+    .dark-mode .btn-outline-success {
+      color: #2ecc71;
+      border-color: #2ecc71;
+    }
+    
+    .dark-mode .btn-outline-success:hover {
+      background-color: #2ecc71;
+      color: #121212;
+    }
+    
+    .dark-mode .btn-primary {
+      background-color: #0d6efd;
+      border-color: #0d6efd;
+    }
+    
+    .dark-mode .btn-primary:hover {
+      background-color: #0b5ed7;
+      border-color: #0a58ca;
+    }
+    
+    /* Card header with colored backgrounds */
+    .dark-mode .card-header.bg-primary {
+      background-color: #0d6efd !important;
+      color: white;
+    }
+    
+    /* Badges */
+    .dark-mode .badge.bg-primary {
+      background-color: #0d6efd !important;
+    }
+    
+    .dark-mode .badge.bg-success {
+      background-color: #198754 !important;
+    }
+    
+    .dark-mode .badge.bg-warning {
+      background-color: #ffc107 !important;
+      color: #212529 !important;
+    }
+    
+    .dark-mode .badge.bg-info {
+      background-color: #0dcaf0 !important;
+      color: #212529 !important;
+    }
+    
+    /* Borders and dividers */
+    .dark-mode hr {
+      border-color: #333;
+    }
+    
+    .dark-mode .border {
+      border-color: #444 !important;
+    }
+    
+    /* Icons */
+    .dark-mode .fa-sun,
+    .dark-mode .fa-moon,
+    .dark-mode .fas,
+    .dark-mode .fa {
+      color: #e0e0e0;
+    }
+    
+    /* Countdown elements */
+    .dark-mode #eidCountdown .border {
+      background-color: #2d2d2d;
+      border-color: #444 !important;
+      color: #e0e0e0;
+    }
+    
+    .dark-mode #eid-date {
+      color: #e0e0e0;
+    }
+    
+    /* Alerts */
+    .dark-mode .alert-success {
+      background-color: #1e3a2d;
+      color: #75b798;
+      border-color: #198754;
+    }
+    
+    /* Shadow effects */
+    .dark-mode .shadow-sm {
+      box-shadow: 0 .125rem .25rem rgba(0, 0, 0, 0.3) !important;
+    }
+    
+    .dark-mode .shadow {
+      box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.4) !important;
     }
     
     /* Dark mode toggle button styles when in dark mode */
@@ -43,12 +237,144 @@
     .dark-mode #darkModeToggle:hover {
       background-color: #e2e6ea;
     }
+    
+    /* Feedback form specific styles */
+    .dark-mode #feedbackResponse .text-success {
+      color: #2ecc71 !important;
+    }
+    
+    /* Progress bars if added in future */
+    .dark-mode .progress {
+      background-color: #2d2d2d;
+    }
+    
+    .dark-mode .progress-bar {
+      background-color: #0d6efd;
+    }
+    
+    /* Improved font contrast for all text-based elements */
+    .dark-mode p, 
+    .dark-mode span, 
+    .dark-mode div, 
+    .dark-mode label,
+    .dark-mode small {
+      color: #e0e0e0;
+    }
+
+    /* LIGHT MODE IMPROVEMENTS FOR BETTER CONTRAST */
+    
+    body {
+      background-color: #f8f9fa;
+      color: #212529;
+      font-family: 'Roboto', sans-serif;
+      line-height: 1.6;
+    }
+    
+    .card {
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .card-header {
+      background-color: #f1f3f5;
+    }
+    
+    /* Ensure icons are clearly visible in light mode */
+    .fa-sun,
+    .fa-moon,
+    .fas,
+    .fa {
+      color: #495057;
+    }
+    
+    /* Clear text across all basic elements */
+    h1, h2, h3, h4, h5, h6 {
+      color: #212529;
+      font-weight: 500;
+      line-height: 1.3;
+    }
+    
+    /* Make sure form elements have sufficient contrast */
+    .form-control::placeholder {
+      color: #6c757d;
+    }
+    
+    .form-control:focus {
+      box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+    }
+
+    /* Font enhancements for better readability in both modes */
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+    }
+    
+    h5.card-title {
+      font-weight: 600;
+      letter-spacing: 0.01em;
+    }
+    
+    /* Enhanced time display */
+    #currentTime {
+      font-weight: 700;
+      letter-spacing: 0.03em;
+    }
+    
+    #currentDate {
+      font-weight: 400;
+    }
+    
+    /* Prayer times - enhance readability */
+    .list-group-item {
+      font-size: 1.05rem;
+      letter-spacing: 0.01em;
+    }
+    
+    /* Countdown numbers - better legibility */
+    #eidCountdown .fs-2 {
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+    
+    #eidCountdown .small {
+      font-weight: 500;
+      font-size: 0.85rem;
+    }
+    
+    /* Form elements - better legibility */
+    .form-label {
+      font-weight: 500;
+    }
+    
+    .form-check-label {
+      font-size: 1.05rem;
+    }
+    
+    /* Button text - enhanced readability */
+    .btn {
+      font-weight: 500;
+      letter-spacing: 0.01em;
+    }
+    
+    /* Font scaling for better mobile view */
+    @media (max-width: 768px) {
+      body {
+        font-size: 0.95rem;
+      }
+      
+      h1 {
+        font-size: 2rem;
+      }
+      
+      .list-group-item {
+        font-size: 1rem;
+      }
+    }
   </style>
 </head>
 
 <body>
 <!-- Dark Mode Toggle Button -->
-<button id="darkModeToggle" style="position: fixed; top: 20px; right: 20px; background: #333; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; z-index: 1000; display: flex; align-items: center; gap: 8px; font-size: 14px;">
+<button id="darkModeToggle">
   <i class="fas fa-moon"></i> 
   <span>Dark Mode</span>
 </button>
@@ -179,7 +505,7 @@
                   </div>
                 </div>
               </div>
-              <div class="mt-3 text-muted">
+              <div class="mt-3" id="eid-date">
                 <i class="fas fa-calendar-day me-1"></i> Friday, June 6th, 2025
               </div>
             </div>
@@ -222,6 +548,70 @@
           </div>
           <div class="card-body" id="achievementsContent">
             Nothing yet, but you're here and that's a great first step!
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Simplified Feedback Card -->
+    <div class="row mt-4 mb-5">
+      <div class="col-lg-12">
+        <div class="card shadow">
+          <div class="card-header bg-primary text-white">
+            <h5 class="card-title mb-0">
+              <i class="fas fa-comment-dots me-2"></i> Quick Feedback
+            </h5>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-6">
+                <form id="feedbackForm">
+                  <div class="mb-3">
+                    <label for="feedbackName" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="feedbackName" placeholder="Your name">
+                  </div>
+                  <div class="mb-3">
+                    <label for="feedbackType" class="form-label">Type of Feedback</label>
+                    <select class="form-select" id="feedbackType">
+                      <option selected>Choose...</option>
+                      <option value="suggestion">Suggestion</option>
+                      <option value="issue">Issue/Bug</option>
+                      <option value="question">Question</option>
+                      <option value="praise">Praise</option>
+                    </select>
+                  </div>
+                  <div class="mb-3">
+                    <label for="feedbackMessage" class="form-label">Message</label>
+                    <textarea class="form-control" id="feedbackMessage" rows="4" placeholder="Please share your thoughts, suggestions, or report any issues..."></textarea>
+                  </div>
+                  <button type="button" id="submitFeedback" class="btn btn-primary">
+                    <i class="fas fa-paper-plane me-2"></i> Submit Feedback
+                  </button>
+                </form>
+              </div>
+              <div class="col-md-6">
+                <div class="d-flex h-100 align-items-center justify-content-center">
+                  <div id="feedbackResponse" class="d-none text-center p-4">
+                    <div class="mb-3">
+                      <i class="fas fa-check-circle text-success" style="font-size: 3rem;"></i>
+                    </div>
+                    <h4>Thank you for your feedback!</h4>
+                    <p class="text-muted">We appreciate your input and will review it soon.</p>
+                  </div>
+                  <div id="feedbackInitial" class="text-center p-4">
+                    <img src="/api/placeholder/200/180" alt="Feedback" class="img-fluid mb-3">
+                    <h4>We Value Your Opinion</h4>
+                    <p class="text-muted">Your feedback helps us improve this prayer time application.</p>
+                    <div class="d-flex justify-content-center gap-2 mt-3">
+                      <span class="badge bg-primary">Suggestions</span>
+                      <span class="badge bg-success">Praise</span>
+                      <span class="badge bg-warning text-dark">Bug Reports</span>
+                      <span class="badge bg-info text-dark">Questions</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -335,9 +725,9 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
-<!-- Dark Mode JavaScript -->
+<!-- Enhanced Dark Mode JavaScript -->
 <script>
-// Dark Mode Implementation
+// Enhanced Dark Mode Implementation
 document.addEventListener('DOMContentLoaded', function() {
   const darkModeToggle = document.getElementById('darkModeToggle');
   const body = document.body;
@@ -367,7 +757,7 @@ document.addEventListener('DOMContentLoaded', function() {
     icon.className = 'fas fa-sun';
     text.textContent = 'Light Mode';
     localStorage.setItem('theme', 'dark');
-    applyDarkStyles();
+    document.dispatchEvent(new CustomEvent('themeChange', { detail: 'dark' }));
   }
   
   function enableLightMode() {
@@ -375,130 +765,73 @@ document.addEventListener('DOMContentLoaded', function() {
     icon.className = 'fas fa-moon';
     text.textContent = 'Dark Mode';
     localStorage.setItem('theme', 'light');
-    applyLightStyles();
+    document.dispatchEvent(new CustomEvent('themeChange', { detail: 'light' }));
   }
   
-  function applyDarkStyles() {
-    // Apply dark mode to body and background
-    body.style.backgroundColor = '#121212';
-    body.style.color = '#e0e0e0';
-    
-    // Apply dark mode to date/time display
-    const dateElement = document.getElementById('currentDate');
-    const timeElement = document.getElementById('currentTime');
-    if (dateElement) dateElement.style.color = '#e0e0e0';
-    if (timeElement) timeElement.style.color = '#e0e0e0';
-    
-    // Apply dark mode to countdown elements
-    const countdownBoxes = document.querySelectorAll('#eidCountdown .border');
-    countdownBoxes.forEach(box => {
-      box.style.backgroundColor = '#2d2d2d';
-      box.style.borderColor = '#444';
-      box.style.color = '#e0e0e0';
-    });
-    
-    // Apply dark mode to countdown date text
-    const countdownText = document.querySelector('#eidCountdown .text-muted');
-    if (countdownText) countdownText.style.color = '#aaa !important';
-    
-    // Apply dark mode to cards
-    const cards = document.querySelectorAll('.card');
-    cards.forEach(card => {
-      card.style.backgroundColor = '#1e1e1e';
-      card.style.color = '#e0e0e0';
-      card.style.borderColor = '#333';
-    });
-    
-    // Apply dark mode to card headers
-    const cardHeaders = document.querySelectorAll('.card-header');
-    cardHeaders.forEach(header => {
-      header.style.backgroundColor = '#2d2d2d';
-      header.style.borderColor = '#333';
-    });
-    
-    // Apply dark mode to list group items
-    const listItems = document.querySelectorAll('.list-group-item');
-    listItems.forEach(item => {
-      item.style.backgroundColor = '#1e1e1e';
-      item.style.color = '#e0e0e0';
-      item.style.borderColor = '#333';
-    });
-    
-    // Apply dark mode to form elements
-    const formElements = document.querySelectorAll('.form-check-label');
-    formElements.forEach(el => {
-      el.style.color = '#e0e0e0';
-    });
-    
-    // Apply dark mode to inspiration background
-    const inspirationContent = document.getElementById('inspirationContent');
-    if (inspirationContent) {
-      inspirationContent.classList.remove('bg-secondary-subtle');
-      inspirationContent.classList.add('bg-dark');
-      inspirationContent.style.color = '#e0e0e0';
+  // Listen for system theme changes
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+    if (!localStorage.getItem('theme')) { // Only auto-switch if user hasn't set a preference
+      if (e.matches) {
+        enableDarkMode();
+      } else {
+        enableLightMode();
+      }
     }
-  }
+  });
+});
+</script>
+
+<!-- Feedback Form Handling -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const submitFeedbackBtn = document.getElementById('submitFeedback');
+  const feedbackForm = document.getElementById('feedbackForm');
+  const feedbackInitial = document.getElementById('feedbackInitial');
+  const feedbackResponse = document.getElementById('feedbackResponse');
   
-  function applyLightStyles() {
-    // Revert body and background to light mode
-    body.style.backgroundColor = '';
-    body.style.color = '';
+  submitFeedbackBtn.addEventListener('click', function() {
+    const name = document.getElementById('feedbackName').value;
+    const type = document.getElementById('feedbackType').value;
+    const message = document.getElementById('feedbackMessage').value;
     
-    // Revert date/time display to light mode
-    const dateElement = document.getElementById('currentDate');
-    const timeElement = document.getElementById('currentTime');
-    if (dateElement) dateElement.style.color = '';
-    if (timeElement) timeElement.style.color = '';
-    
-    // Revert countdown elements to light mode
-    const countdownBoxes = document.querySelectorAll('#eidCountdown .border');
-    countdownBoxes.forEach(box => {
-      box.style.backgroundColor = '';
-      box.style.borderColor = '';
-      box.style.color = '';
-    });
-    
-    // Revert countdown date text to light mode
-    const countdownText = document.querySelector('#eidCountdown .text-muted');
-    if (countdownText) countdownText.style.color = '';
-    
-    // Revert cards to light mode
-    const cards = document.querySelectorAll('.card');
-    cards.forEach(card => {
-      card.style.backgroundColor = '';
-      card.style.color = '';
-      card.style.borderColor = '';
-    });
-    
-    // Revert card headers to light mode
-    const cardHeaders = document.querySelectorAll('.card-header');
-    cardHeaders.forEach(header => {
-      header.style.backgroundColor = '';
-      header.style.borderColor = '';
-    });
-    
-    // Revert list group items to light mode
-    const listItems = document.querySelectorAll('.list-group-item');
-    listItems.forEach(item => {
-      item.style.backgroundColor = '';
-      item.style.color = '';
-      item.style.borderColor = '';
-    });
-    
-    // Revert form elements to light mode
-    const formElements = document.querySelectorAll('.form-check-label');
-    formElements.forEach(el => {
-      el.style.color = '';
-    });
-    
-    // Revert inspiration background to light mode
-    const inspirationContent = document.getElementById('inspirationContent');
-    if (inspirationContent) {
-      inspirationContent.classList.add('bg-secondary-subtle');
-      inspirationContent.classList.remove('bg-dark');
-      inspirationContent.style.color = '';
+    // Basic validation
+    if (!name || type === 'Choose...' || !message) {
+      alert('Please fill in all fields');
+      return;
     }
-  }
+    
+    // Create feedback object
+    const feedback = {
+      id: Date.now(),
+      name: name,
+      type: type,
+      message: message,
+      date: new Date().toISOString(),
+      read: false
+    };
+    
+    // Get existing feedback from localStorage or create empty array
+    let allFeedback = JSON.parse(localStorage.getItem('prayerAppFeedback')) || [];
+    
+    // Add new feedback to array
+    allFeedback.push(feedback);
+    
+    // Save back to localStorage
+    localStorage.setItem('prayerAppFeedback', JSON.stringify(allFeedback));
+    
+    // Show thank you message
+    feedbackInitial.classList.add('d-none');
+    feedbackResponse.classList.remove('d-none');
+    
+    // Reset form
+    feedbackForm.reset();
+    
+    // After 3 seconds, reset the form display
+    setTimeout(() => {
+      feedbackResponse.classList.add('d-none');
+      feedbackInitial.classList.remove('d-none');
+    }, 3000);
+  });
 });
 </script>
 
