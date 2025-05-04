@@ -161,5 +161,41 @@
 <!-- Custom JavaScript -->
 <script type="module" src="app.js"></script>
 
+  // Function to display the current date and time
+function updateDateTime() {
+  const now = new Date();
+  
+  // Format options for date and time
+  const dateOptions = { 
+    weekday: 'long', 
+    year: 'numeric', 
+    month: 'long', 
+    day: 'numeric' 
+  };
+  
+  const timeOptions = {
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hour12: true
+  };
+  
+  // Format the date and time
+  const formattedDate = now.toLocaleDateString('en-US', dateOptions);
+  const formattedTime = now.toLocaleTimeString('en-US', timeOptions);
+  
+  // Combine date and time
+  const dateTimeString = `${formattedDate} | ${formattedTime}`;
+  
+  // Update the element with the current date and time
+  document.getElementById('currentData').textContent = dateTimeString;
+}
+
+// Initial call to display the date and time
+updateDateTime();
+
+// Update the time every second
+setInterval(updateDateTime, 1000);
+
 </body>
 </html>
