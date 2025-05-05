@@ -26,9 +26,54 @@ export function getPrayerTimes(location) {
       };
 
       console.log(prayerTimes);
-
+      showPrayerTimes(prayerTimes);
     })
     .catch((error) => {
       console.error("Failed to grab prayer times!", error);
     });
 }
+
+function showPrayerTimes(prayerTimes) {
+  const container = document.getElementById("prayer-times-container");
+
+  const prayerArray = [
+    {
+      name: "Fajr",
+      time: prayerTimes.fajr,
+      icon: "fa-sun"
+    },
+    {
+      name: "Sunrise",
+      time: prayerTimes.sunrise,
+      icon: "fa-sun"
+    },
+    {
+      name: "Dhuhr",
+      time: prayerTimes.dhuhr,
+      icon: "fa-sun"
+    },
+    {
+      name: "Asr",
+      time: prayerTimes.asr,
+      icon: "fa-sun"
+    },
+    {
+      name: "Maghrib",
+      time: prayerTimes.maghrib,
+      icon: "fa-moon"
+    },
+    {
+      name: "Isha",
+      time: prayerTimes.isha,
+      icon: "fa-moon"
+    },
+  ];
+
+  container.innerHTML = prayerArray.map((prayer) => `
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      <div><i class="fas ${prayer.icon} me-3"></i>${prayer.name}</div>
+      <div>${prayer.time}</div>
+    </li>
+  `).join("\n");
+}
+
