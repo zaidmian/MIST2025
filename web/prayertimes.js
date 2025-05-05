@@ -39,12 +39,12 @@ function showPrayerTimes(prayerTimes) {
   const prayerArray = [
     {
       name: "Fajr",
-      time: prayerTimes.fajr,
+      time: convertTo12HFormat(prayerTimes.fajr),
       icon: "fa-sun"
     },
     {
       name: "Sunrise",
-      time: prayerTimes.sunrise,
+      time: convertTo12HFormat(prayerTimes.sunrise),
       icon: "fa-sun"
     },
     {
@@ -75,5 +75,11 @@ function showPrayerTimes(prayerTimes) {
       <div>${prayer.time}</div>
     </li>
   `).join("\n");
+}
+
+function convertTo12HFormat(time24) {
+  // Do some magic
+  // Return 12H format.
+  return time24;
 }
 
