@@ -1,4 +1,4 @@
-import {CitySelector} from "./location.js";
+import {setupCitySelector} from "./location.js";
 import {showRandomInspiration} from "./content.js";
 import {getPrayerTimes} from "./prayertimes.js";
 import {setupStreakHandlers} from "./streak.js";
@@ -13,12 +13,13 @@ function init() {
   // Initialization code goes here.
   console.log("Let's gooo!");
 
-  const citySelector = new CitySelector('city-selector-container', (selectedCity) => {
-    // This callback function will run when a city is selected
-    console.log('Selected city:', selectedCity);
-    // Here you would call your prayer time calculation function
-    getPrayerTimes(selectedCity);
-  });
+  // const citySelector = new CitySelector('cityList', (selectedCity) => {
+  //   // This callback function will run when a city is selected
+  //   console.log('Selected city:', selectedCity);
+  //   // Here you would call your prayer time calculation function
+  //   getPrayerTimes(selectedCity);
+  // });
+  setupCitySelector();
 
   newInspirationBtn.addEventListener("click", showRandomInspiration)
   showRandomInspiration();

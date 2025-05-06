@@ -1,3 +1,5 @@
+import {getPrayerTimes} from "./prayertimes.js";
+
 // Predefined locations with coordinates
 const northAmericanCities = [
   {name: "New York, USA", latitude: 40.7128, longitude: -74.006},
@@ -23,129 +25,111 @@ const northAmericanCities = [
   {name: "Scarborough, Canada", latitude: 43.7764, longitude: -79.2318},
 ]
 
-// City Selection Component
-export class CitySelector {
-  constructor(containerId, onCitySelected) {
-    this.container = document.getElementById(containerId);
-    this.onCitySelected = onCitySelected;
-    this.render();
-    this.addEventListeners();
+const citiesDropdownList = document.getElementById("cityList");
+const selectedCity = document.getElementById("selectedCity");
+const useLocation = document.getElementById("useLocation");
+
+export function setupCitySelector() {
+  const sortedCities = northAmericanCities.sort((a, b) => {
+    if (a.name < b.name) {
+      return -1;
+    }
+    if (a.name > b.name) {
+      return 1;
+    }
+    return 0;
+  });
+  // Create dropdown UI
+  selectedCity.innerHTML = "Select your city ";
+
+  citiesDropdownList.innerHTML = sortedCities.map(city => `
+    <li>
+      <a class="dropdown-item" href="#" data-city='${JSON.stringify(city)}'>${city.name}</a>
+    </li>
+    `).join("\n");
+  const listItems = citiesDropdownList.getElementsByTagName("li");
+  for (let listItem of listItems) {
+    listItem.addEventListener("click", (e) => {
+      let city = JSON.parse(e.target.getAttribute("data-city"));
+      citySelected(city);
+    })
   }
 
-  render() {
-    const sortedCities = northAmericanCities.sort((a, b) => {
-      if ( a.name < b.name ){
-        return -1;
-      }
-      if ( a.name > b.name ){
-        return 1;
-      }
-      return 0;
-    });
-    // Create dropdown UI
-    this.container.innerHTML = `
-    <form>
-      <div class="form-group row">
-        <div class="form-group col-md-6">
-          <select id="city-dropdown" class="form-select">
-            <option value="">-- Select a City --</option>
-            ${sortedCities.map(city =>
-      `<option value="${city.name}" data-lat="${city.latitude}" data-lng="${city.longitude}">
-                ${city.name}
-              </option>`
-    ).join('')}
-          </select>
-        </div>
-        <div class="form-group col-md-6">
-          <button id="use-location" class="btn btn-outline-success">Use My Location</button>
-        </div>
-      </div>
-    </form>
-    `;
-  }
+  useLocation.addEventListener("click", () => {
+    getUserLocation();
+  })
+}
 
-  addEventListeners() {
-    // Handle dropdown selection
-    const dropdown = this.container.querySelector('#city-dropdown');
-    dropdown.addEventListener('change', (e) => {
-      if (e.target.value) {
-        const selectedOption = e.target.options[e.target.selectedIndex];
-        const cityData = {
-          name: e.target.value,
-          latitude: parseFloat(selectedOption.getAttribute('data-lat')),
-          longitude: parseFloat(selectedOption.getAttribute('data-lng'))
-        };
-        this.onCitySelected(cityData);
-      }
-    });
-    // Handle "Use My Location" button click
-    const locationBtn = this.container.querySelector('#use-location');
-    locationBtn.addEventListener('click', () => {
-      if (navigator.geolocation) {
-        locationBtn.textContent = 'Detecting...';
-        locationBtn.disabled = true;
+export function citySelected(selectedCity) {
+  document.getElementById("selectedCity").innerHTML = selectedCity.name;
+  console.log(selectedCity);
+  getPrayerTimes(selectedCity);
+}
 
-        navigator.geolocation.getCurrentPosition(
-          (position) => {
-            // Find the closest city to user's current location
-            const closestCity = this.findClosestCity(
-              position.coords.latitude,
-              position.coords.longitude
-            );
+function getUserLocation() {
+  if (navigator.geolocation) {
+    useLocation.innerHTML = '<div class="spinner-border spinner-border-sm" role="status"></div>'
+    useLocation.disabled = true;
 
-            // Update dropdown to show the closest city
-            dropdown.value = closestCity.name;
-
-            // Trigger the change event
-            this.onCitySelected(closestCity);
-
-            // Reset button
-            locationBtn.textContent = 'Use My Location';
-            locationBtn.disabled = false;
-          },
-          (error) => {
-            alert('Unable to retrieve your location. Please select a city from the dropdown.');
-            locationBtn.textContent = 'Use My Location';
-            locationBtn.disabled = false;
-          }
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        // Find the closest city to user's current location
+        const closestCity = findClosestCity(
+          position.coords.latitude,
+          position.coords.longitude
         );
-      } else {
-        alert('Geolocation is not supported by your browser. Please select a city from the dropdown.');
+
+        // Update dropdown to show the closest city
+        selectedCity.innerHTML = closestCity.name;
+
+        // Trigger the change event
+        citySelected(closestCity);
+
+        // Reset button
+        useLocation.innerHTML = '<i class="fas fa-location-crosshairs"></i>';
+        useLocation.disabled = false;
+      },
+      () => {
+        alert('Unable to retrieve your location. Please select a city from the dropdown.');
+        useLocation.textContent = '<i class="fas fa-location-crosshairs"></i>';
+        useLocation.disabled = false;
       }
-    });
-  }
-
-  findClosestCity(userLat, userLng) {
-    // Calculate distance between two points using Haversine formula
-    function getDistance(lat1, lon1, lat2, lon2) {
-      const R = 6371; // Radius of the Earth in km
-      const dLat = (lat2 - lat1) * (Math.PI / 180);
-      const dLon = (lon2 - lon1) * (Math.PI / 180);
-      const a =
-        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-        Math.cos(lat1 * (Math.PI / 180)) * Math.cos(lat2 * (Math.PI / 180)) *
-        Math.sin(dLon / 2) * Math.sin(dLon / 2);
-      const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-      return R * c; // Distance in km
-    }
-
-    // Find closest city
-    let closestCity = northAmericanCities[0];
-    let minDistance = getDistance(
-      userLat, userLng,
-      northAmericanCities[0].latitude,
-      northAmericanCities[0].longitude
     );
-
-    for (let i = 1; i < northAmericanCities.length; i++) {
-      const city = northAmericanCities[i];
-      const distance = getDistance(userLat, userLng, city.latitude, city.longitude);
-      if (distance < minDistance) {
-        minDistance = distance;
-        closestCity = city;
-      }
-    }
-
-    return closestCity;
+  } else {
+    alert('Geolocation is not supported by your browser. Please select a city from the dropdown.');
   }
+}
+
+function findClosestCity(userLat, userLng) {
+  // Calculate distance between two points using Haversine formula
+  function getDistance(lat1, lon1, lat2, lon2) {
+    const R = 6371; // Radius of the Earth in km
+    const dLat = (lat2 - lat1) * (Math.PI / 180);
+    const dLon = (lon2 - lon1) * (Math.PI / 180);
+    const a =
+      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos(lat1 * (Math.PI / 180)) * Math.cos(lat2 * (Math.PI / 180)) *
+      Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    return R * c; // Distance in km
+  }
+
+  // Find the closest city
+  let closestCity = northAmericanCities[0];
+  let minDistance = getDistance(
+    userLat, userLng,
+    northAmericanCities[0].latitude,
+    northAmericanCities[0].longitude
+  );
+
+  for (let i = 1; i < northAmericanCities.length; i++) {
+    const city = northAmericanCities[i];
+    const distance = getDistance(userLat, userLng, city.latitude, city.longitude);
+    if (distance < minDistance) {
+      minDistance = distance;
+      closestCity = city;
+    }
+  }
+
+  return closestCity;
 }

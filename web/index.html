@@ -1,4 +1,5 @@
 <!doctype html>
+<!--suppress CssUnresolvedCustomProperty -->
 <html lang="en">
 <head>
   <meta charset="UTF-8"/>
@@ -15,20 +16,66 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet"/>
 </head>
 
+<style>
+    .form-switch .form-check-input:checked {
+        background-color: rgba(var(--bs-success-rgb)) !important;
+        border-color: white !important;
+    }
+
+    .form-switch .form-check-input:focus {
+        border-color: white !important;
+    }
+
+    .form-check-input:checked {
+        background-color: rgba(var(--bs-success-rgb)) !important;
+    }
+
+    .form-check-input:focus {
+        border-color: white !important;
+    }
+</style>
+
 <body>
-<!-- Dark Mode Toggle Button -->
-<div class="form-check form-switch">
-  <input class="form-check-input" type="checkbox" id="darkModeToggle" />
-  <label class="form-check-label" for="darkModeToggle"> Dark Mode </label>
-</div>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-success">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#"><i class="fas fa-moon me-3"></i><span class="h3">SalahSYNC</span></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse ms-4" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a href="#" class="nav-link"><i class="fas fa-location-dot text-light"></i></a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle active" href="#" id="selectedCity" role="button" data-bs-toggle="dropdown"
+               aria-expanded="false">
+              Select your city
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="selectedCity" id="cityList"></ul>
+          </li>
+          <li class="nav-item ms-2">
+            <button class="btn text-light" id="useLocation"><i class="fas fa-location-crosshairs"></i></button>
+          </li>
+        </ul>
+        <!-- Dark Mode Toggle Button -->
+        <form class="d-flex align-items-center">
+          <i class="fas fa-sun me-2 text-light"></i>
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="darkModeToggle"/>
+          </div>
+          <i class="fas fa-moon text-light"></i>
+        </form>
+      </div>
+    </div>
+  </nav>
 
 <div class="container py-5">
-
-  <div class="container-fluid py-4">
+  <div class="container-fluid">
 
     <div class="row mb-3">
       <header class="text-center">
-        <h1>Prayer Times</h1>
         <p id="currentDate" class="mb-0 fs-5"></p>
         <p id="currentTime" class="fs-4 fw-bold"></p>
       </header>
