@@ -49,22 +49,22 @@ function showPrayerTimes(prayerTimes) {
     },
     {
       name: "Dhuhr",
-      time: prayerTimes.dhuhr,
+      time: convertTo12HFormat(prayerTimes.dhuhr),
       icon: "fa-sun"
     },
     {
       name: "Asr",
-      time: prayerTimes.asr,
+      time: convertTo12HFormat(prayerTimes.asr),
       icon: "fa-sun"
     },
     {
       name: "Maghrib",
-      time: prayerTimes.maghrib,
+      time: convertTo12HFormat(prayerTimes.maghrib),
       icon: "fa-moon"
     },
     {
       name: "Isha",
-      time: prayerTimes.isha,
+      time: convertTo12HFormat(prayerTimes.isha),
       icon: "fa-moon"
     },
   ];
