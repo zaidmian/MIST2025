@@ -26,7 +26,7 @@ const northAmericanCities = [
 ]
 
 const citiesDropdownList = document.getElementById("cityList");
-const selectedCity = document.getElementById("selectedCity");
+const selectedCityTitle = document.getElementById("selectedCity");
 const useLocation = document.getElementById("useLocation");
 
 export function setupCitySelector() {
@@ -40,7 +40,7 @@ export function setupCitySelector() {
     return 0;
   });
   // Create dropdown UI
-  selectedCity.innerHTML = "Select your city ";
+  selectedCityTitle.innerHTML = "Select your city ";
 
   citiesDropdownList.innerHTML = sortedCities.map(city => `
     <li>
@@ -57,12 +57,18 @@ export function setupCitySelector() {
 
   useLocation.addEventListener("click", () => {
     getUserLocation();
-  })
+  });
+
+  let selectedCity = localStorage.getItem("selectedCity");
+  if (selectedCity !== null) {
+    citySelected(JSON.parse(selectedCity));
+  }
 }
 
 export function citySelected(selectedCity) {
   document.getElementById("selectedCity").innerHTML = selectedCity.name;
   console.log(selectedCity);
+  localStorage.setItem("selectedCity", JSON.stringify(selectedCity));
   getPrayerTimes(selectedCity);
 }
 
@@ -80,7 +86,7 @@ function getUserLocation() {
         );
 
         // Update dropdown to show the closest city
-        selectedCity.innerHTML = closestCity.name;
+        selectedCityTitle.innerHTML = closestCity.name;
 
         // Trigger the change event
         citySelected(closestCity);
