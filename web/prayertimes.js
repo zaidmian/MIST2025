@@ -76,10 +76,12 @@ function showPrayerTimes(prayerTimes) {
     </li>
   `).join("\n");
 }
-
+//conversion into 12 hour format
 function convertTo12HFormat(time24) {
-  // Do some magic
-  // Return 12H format.
-  return time24;
+let [hour, minute] = time24.split(":").map(Number);
+let period = hour < 12 ? "AM" : "PM";
+hour = hour % 12 || 12;
+return `${hour}:${minute.toString().padStart(2,'0')} ${period}`;
+return time24;
 }
 
