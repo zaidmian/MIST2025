@@ -13,371 +13,14 @@
 
   <!-- Google Fonts - Enhanced with multiple weights -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet"/>
-
-  <!-- Enhanced Dark Mode CSS -->
-  <style>
-    /* Base transitions for smooth mode switching */
-    * {
-      transition: all 0.3s ease;
-    }
-    
-    /* Dark mode toggle button */
-    #darkModeToggle {
-      background-color: #333;
-      color: white;
-      border: none;
-      padding: 10px 15px;
-      border-radius: 5px;
-      cursor: pointer;
-      z-index: 1000;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 14px;
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-    }
-    
-    #darkModeToggle:hover {
-      opacity: 0.9;
-    }
-
-    /* DARK MODE STYLES */
-    
-    /* Basic elements */
-    body.dark-mode {
-      background-color: #121212;
-      color: #e0e0e0;
-      font-weight: 400;
-    }
-    
-    /* Cards and containers */
-    .dark-mode .card {
-      background-color: #1e1e1e;
-      border-color: #333;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) !important;
-    }
-    
-    .dark-mode .card-header {
-      background-color: #2d2d2d;
-      border-color: #333;
-      color: #e0e0e0;
-    }
-    
-    .dark-mode .card-body {
-      background-color: #1e1e1e;
-      color: #e0e0e0;
-    }
-    
-    .dark-mode .list-group-item {
-      background-color: #1e1e1e;
-      color: #e0e0e0;
-      border-color: #333;
-    }
-    
-    /* Make sure all text is readable */
-    .dark-mode h1, 
-    .dark-mode h2, 
-    .dark-mode h3, 
-    .dark-mode h4, 
-    .dark-mode h5, 
-    .dark-mode h6 {
-      color: #e0e0e0;
-      font-weight: 600;
-    }
-    
-    .dark-mode #currentDate,
-    .dark-mode #currentTime {
-      color: #e0e0e0;
-    }
-    
-    /* Colors and backgrounds */
-    .dark-mode .bg-secondary-subtle {
-      background-color: #2d2d2d !important;
-      color: #e0e0e0;
-    }
-    
-    .dark-mode .text-muted {
-      color: #aaa !important;
-    }
-    
-    /* Form elements */
-    .dark-mode .form-control,
-    .dark-mode .form-select {
-      background-color: #2d2d2d;
-      border-color: #444;
-      color: #e0e0e0;
-    }
-    
-    .dark-mode .form-control:focus,
-    .dark-mode .form-select:focus {
-      background-color: #333;
-      border-color: #0d6efd;
-      box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
-      color: #ffffff;
-    }
-    
-    .dark-mode .form-control::placeholder {
-      color: #888;
-    }
-    
-    .dark-mode .form-check-input {
-      background-color: #2d2d2d;
-      border-color: #555;
-    }
-    
-    .dark-mode .form-check-input:checked {
-      background-color: #0d6efd;
-      border-color: #0d6efd;
-    }
-    
-    .dark-mode .form-check-label {
-      color: #e0e0e0;
-    }
-    
-    /* Buttons */
-    .dark-mode .btn-outline-success {
-      color: #2ecc71;
-      border-color: #2ecc71;
-    }
-    
-    .dark-mode .btn-outline-success:hover {
-      background-color: #2ecc71;
-      color: #121212;
-    }
-    
-    .dark-mode .btn-primary {
-      background-color: #0d6efd;
-      border-color: #0d6efd;
-    }
-    
-    .dark-mode .btn-primary:hover {
-      background-color: #0b5ed7;
-      border-color: #0a58ca;
-    }
-    
-    /* Card header with colored backgrounds */
-    .dark-mode .card-header.bg-primary {
-      background-color: #0d6efd !important;
-      color: white;
-    }
-    
-    /* Badges */
-    .dark-mode .badge.bg-primary {
-      background-color: #0d6efd !important;
-    }
-    
-    .dark-mode .badge.bg-success {
-      background-color: #198754 !important;
-    }
-    
-    .dark-mode .badge.bg-warning {
-      background-color: #ffc107 !important;
-      color: #212529 !important;
-    }
-    
-    .dark-mode .badge.bg-info {
-      background-color: #0dcaf0 !important;
-      color: #212529 !important;
-    }
-    
-    /* Borders and dividers */
-    .dark-mode hr {
-      border-color: #333;
-    }
-    
-    .dark-mode .border {
-      border-color: #444 !important;
-    }
-    
-    /* Icons */
-    .dark-mode .fa-sun,
-    .dark-mode .fa-moon,
-    .dark-mode .fas,
-    .dark-mode .fa {
-      color: #e0e0e0;
-    }
-    
-    /* Countdown elements */
-    .dark-mode #eidCountdown .border {
-      background-color: #2d2d2d;
-      border-color: #444 !important;
-      color: #e0e0e0;
-    }
-    
-    .dark-mode #eid-date {
-      color: #e0e0e0;
-    }
-    
-    /* Alerts */
-    .dark-mode .alert-success {
-      background-color: #1e3a2d;
-      color: #75b798;
-      border-color: #198754;
-    }
-    
-    /* Shadow effects */
-    .dark-mode .shadow-sm {
-      box-shadow: 0 .125rem .25rem rgba(0, 0, 0, 0.3) !important;
-    }
-    
-    .dark-mode .shadow {
-      box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.4) !important;
-    }
-    
-    /* Dark mode toggle button styles when in dark mode */
-    .dark-mode #darkModeToggle {
-      background-color: #f8f9fa;
-      color: #212529;
-    }
-    
-    /* Dark mode button hover styles */
-    .dark-mode #darkModeToggle:hover {
-      background-color: #e2e6ea;
-    }
-    
-    /* Feedback form specific styles */
-    .dark-mode #feedbackResponse .text-success {
-      color: #2ecc71 !important;
-    }
-    
-    /* Progress bars if added in future */
-    .dark-mode .progress {
-      background-color: #2d2d2d;
-    }
-    
-    .dark-mode .progress-bar {
-      background-color: #0d6efd;
-    }
-    
-    /* Improved font contrast for all text-based elements */
-    .dark-mode p, 
-    .dark-mode span, 
-    .dark-mode div, 
-    .dark-mode label,
-    .dark-mode small {
-      color: #e0e0e0;
-    }
-
-    /* LIGHT MODE IMPROVEMENTS FOR BETTER CONTRAST */
-    
-    body {
-      background-color: #f8f9fa;
-      color: #212529;
-      font-family: 'Roboto', sans-serif;
-      line-height: 1.6;
-    }
-    
-    .card {
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-    
-    .card-header {
-      background-color: #f1f3f5;
-    }
-    
-    /* Ensure icons are clearly visible in light mode */
-    .fa-sun,
-    .fa-moon,
-    .fas,
-    .fa {
-      color: #495057;
-    }
-    
-    /* Clear text across all basic elements */
-    h1, h2, h3, h4, h5, h6 {
-      color: #212529;
-      font-weight: 500;
-      line-height: 1.3;
-    }
-    
-    /* Make sure form elements have sufficient contrast */
-    .form-control::placeholder {
-      color: #6c757d;
-    }
-    
-    .form-control:focus {
-      box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
-    }
-
-    /* Font enhancements for better readability in both modes */
-    h1 {
-      font-size: 2.5rem;
-      font-weight: 700;
-    }
-    
-    h5.card-title {
-      font-weight: 600;
-      letter-spacing: 0.01em;
-    }
-    
-    /* Enhanced time display */
-    #currentTime {
-      font-weight: 700;
-      letter-spacing: 0.03em;
-    }
-    
-    #currentDate {
-      font-weight: 400;
-    }
-    
-    /* Prayer times - enhance readability */
-    .list-group-item {
-      font-size: 1.05rem;
-      letter-spacing: 0.01em;
-    }
-    
-    /* Countdown numbers - better legibility */
-    #eidCountdown .fs-2 {
-      font-weight: 700;
-      letter-spacing: 0.02em;
-    }
-    
-    #eidCountdown .small {
-      font-weight: 500;
-      font-size: 0.85rem;
-    }
-    
-    /* Form elements - better legibility */
-    .form-label {
-      font-weight: 500;
-    }
-    
-    .form-check-label {
-      font-size: 1.05rem;
-    }
-    
-    /* Button text - enhanced readability */
-    .btn {
-      font-weight: 500;
-      letter-spacing: 0.01em;
-    }
-    
-    /* Font scaling for better mobile view */
-    @media (max-width: 768px) {
-      body {
-        font-size: 0.95rem;
-      }
-      
-      h1 {
-        font-size: 2rem;
-      }
-      
-      .list-group-item {
-        font-size: 1rem;
-      }
-    }
-  </style>
 </head>
 
 <body>
 <!-- Dark Mode Toggle Button -->
-<button id="darkModeToggle">
-  <i class="fas fa-moon"></i> 
-  <span>Dark Mode</span>
-</button>
+<div class="form-check form-switch">
+  <input class="form-check-input" type="checkbox" id="darkModeToggle" />
+  <label class="form-check-label" for="darkModeToggle"> Dark Mode </label>
+</div>
 
 <div class="container py-5">
 
@@ -458,7 +101,7 @@
             </div>
           </div>
         </div>
-        
+
         <div class="card mb-4 shadow-sm">
           <div class="card-header">
             <h5 class="card-title">Prayer Tracker</h5>
@@ -568,7 +211,7 @@
 </div>
 <!-- Bootstrap Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  
+
 <!-- Custom JavaScript -->
 <script type="module" src="app.js"></script>
 
@@ -577,28 +220,28 @@
 document.addEventListener('DOMContentLoaded', function() {
   // Set the Eid Al Adha date - June 6th, 2025
   const eidDate = new Date('June 6, 2025 00:00:00').getTime();
-  
+
   // DOM elements for countdown display
   const daysElement = document.getElementById('countdown-days');
   const hoursElement = document.getElementById('countdown-hours');
   const minutesElement = document.getElementById('countdown-minutes');
   const secondsElement = document.getElementById('countdown-seconds');
-  
+
   // Function to update the countdown
   function updateCountdown() {
     // Get current date and time
     const now = new Date().getTime();
-    
+
     // Calculate the time difference
     const timeDifference = eidDate - now;
-    
+
     if (timeDifference > 0) {
       // Calculate days, hours, minutes, seconds
       const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
       const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
-      
+
       // Update the display
       daysElement.textContent = days;
       hoursElement.textContent = hours < 10 ? '0' + hours : hours;
@@ -610,7 +253,7 @@ document.addEventListener('DOMContentLoaded', function() {
       hoursElement.textContent = '00';
       minutesElement.textContent = '00';
       secondsElement.textContent = '00';
-      
+
       // Display Eid Mubarak message
       const countdownElement = document.getElementById('eidCountdown');
       if (countdownElement) {
@@ -621,10 +264,10 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     }
   }
-  
+
   // Initial call
   updateCountdown();
-  
+
   // Update every second
   setInterval(updateCountdown, 1000);
 });
@@ -636,95 +279,39 @@ document.addEventListener('DOMContentLoaded', function() {
 document.addEventListener('DOMContentLoaded', function() {
   const dateElement = document.getElementById('currentDate');
   const timeElement = document.getElementById('currentTime');
-  
+
   // Format options for date display
-  const dateOptions = { 
-    weekday: 'long', 
-    year: 'numeric', 
-    month: 'long', 
-    day: 'numeric' 
+  const dateOptions = {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
   };
-  
+
   // Format options for time display
-  const timeOptions = { 
-    hour: '2-digit', 
-    minute: '2-digit', 
+  const timeOptions = {
+    hour: '2-digit',
+    minute: '2-digit',
     second: '2-digit',
-    hour12: true 
+    hour12: true
   };
-  
+
   // Update date and time
   function updateDateTime() {
     const now = new Date();
-    
+
     // Update date display
     dateElement.textContent = now.toLocaleDateString(undefined, dateOptions);
-    
+
     // Update time display
     timeElement.textContent = now.toLocaleTimeString(undefined, timeOptions);
   }
-  
+
   // Initial update
   updateDateTime();
-  
+
   // Update every second
   setInterval(updateDateTime, 1000);
-});
-</script>
-
-<!-- Enhanced Dark Mode JavaScript -->
-<script>
-// Enhanced Dark Mode Implementation
-document.addEventListener('DOMContentLoaded', function() {
-  const darkModeToggle = document.getElementById('darkModeToggle');
-  const body = document.body;
-  const icon = darkModeToggle.querySelector('i');
-  const text = darkModeToggle.querySelector('span');
-  
-  // Check for saved theme preference or use preferred color scheme
-  const savedTheme = localStorage.getItem('theme');
-  
-  if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-    enableDarkMode();
-  } else {
-    enableLightMode();
-  }
-  
-  // Toggle dark/light mode
-  darkModeToggle.addEventListener('click', () => {
-    if (body.classList.contains('dark-mode')) {
-      enableLightMode();
-    } else {
-      enableDarkMode();
-    }
-  });
-  
-  function enableDarkMode() {
-    body.classList.add('dark-mode');
-    icon.className = 'fas fa-sun';
-    text.textContent = 'Light Mode';
-    localStorage.setItem('theme', 'dark');
-    document.dispatchEvent(new CustomEvent('themeChange', { detail: 'dark' }));
-  }
-  
-  function enableLightMode() {
-    body.classList.remove('dark-mode');
-    icon.className = 'fas fa-moon';
-    text.textContent = 'Dark Mode';
-    localStorage.setItem('theme', 'light');
-    document.dispatchEvent(new CustomEvent('themeChange', { detail: 'light' }));
-  }
-  
-  // Listen for system theme changes
-  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-    if (!localStorage.getItem('theme')) { // Only auto-switch if user hasn't set a preference
-      if (e.matches) {
-        enableDarkMode();
-      } else {
-        enableLightMode();
-      }
-    }
-  });
 });
 </script>
 
@@ -735,18 +322,18 @@ document.addEventListener('DOMContentLoaded', function() {
   const feedbackForm = document.getElementById('feedbackForm');
   const feedbackInitial = document.getElementById('feedbackInitial');
   const feedbackResponse = document.getElementById('feedbackResponse');
-  
+
   submitFeedbackBtn.addEventListener('click', function() {
     const name = document.getElementById('feedbackName').value;
     const type = document.getElementById('feedbackType').value;
     const message = document.getElementById('feedbackMessage').value;
-    
+
     // Basic validation
     if (!name || type === 'Choose...' || !message) {
       alert('Please fill in all fields');
       return;
     }
-    
+
     // Create feedback object
     const feedback = {
       id: Date.now(),
@@ -756,23 +343,23 @@ document.addEventListener('DOMContentLoaded', function() {
       date: new Date().toISOString(),
       read: false
     };
-    
+
     // Get existing feedback from localStorage or create empty array
     let allFeedback = JSON.parse(localStorage.getItem('prayerAppFeedback')) || [];
-    
+
     // Add new feedback to array
     allFeedback.push(feedback);
-    
+
     // Save back to localStorage
     localStorage.setItem('prayerAppFeedback', JSON.stringify(allFeedback));
-    
+
     // Show thank you message
     feedbackInitial.classList.add('d-none');
     feedbackResponse.classList.remove('d-none');
-    
+
     // Reset form
     feedbackForm.reset();
-    
+
     // After 3 seconds, reset the form display
     setTimeout(() => {
       feedbackResponse.classList.add('d-none');
