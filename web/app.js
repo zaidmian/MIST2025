@@ -1,8 +1,8 @@
 import {setupCitySelector} from "./location.js";
 import {showRandomInspiration} from "./content.js";
-import {getPrayerTimes} from "./prayertimes.js";
 import {setupStreakHandlers} from "./streak.js";
 import {setupDarkModeToggle} from "./darkmode.js";
+import {setupEidCounter} from "./eid.js";
 
 // Initialize app on DOM load
 document.addEventListener("DOMContentLoaded", init);
@@ -23,9 +23,8 @@ function init() {
 
   newInspirationBtn.addEventListener("click", showRandomInspiration)
   showRandomInspiration();
-
   setupStreakHandlers();
-
   setupDarkModeToggle();
+  setupEidCounter()
 }
 
