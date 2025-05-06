@@ -61,10 +61,6 @@ export function handlePrayerCompletionUpdate(whichPrayer, completed) {
       }
   }
 
-  saveStreak(streakData);
+  localStorage.setItem("prayerStreak", JSON.stringify(streakData));
 }
-
-export function saveStreak(data) {
-    localStorage.setItem("prayerStreak", JSON.stringify(data));
-  }
 
