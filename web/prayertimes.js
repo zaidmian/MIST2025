@@ -92,17 +92,17 @@ function showPrayerTimes(prayerTimes) {
   
   // Generate next prayer info row
   const nextPrayerInfo = `
-    <li class="list-group-item d-flex justify-content-between align-items-center mt-3 bg-primary bg-opacity-10 border-primary">
+    <li class="list-group-item d-flex justify-content-between align-items-center mt-3 bg-success bg-opacity-10 border-success">
       <div class="d-flex align-items-center">
-        <i class="fas fa-arrow-right text-primary me-3"></i>
+        <i class="fas fa-arrow-right text-success me-3"></i>
         <div>
           <span class="d-block fw-bold">Next Prayer</span>
-          <span class="text-primary">${nextPrayer.name}</span>
+          <span class="text-success">${nextPrayer.name}</span>
         </div>
       </div>
-      <div>
-        <span class="badge bg-primary rounded-pill p-2">${nextPrayer.time}</span>
-        <div class="small text-muted text-end" id="time-remaining"></div>
+      <div class="d-flex flex-column align-items-end">
+        <div class="badge bg-success rounded-pill p-2">${nextPrayer.time}</div>
+        <div class="small text-muted me-1" id="time-remaining"></div>
       </div>
     </li>
   `;
@@ -175,7 +175,7 @@ function updateTimeRemaining(nextPrayerTimeInMinutes) {
     const seconds = diffInSeconds % 60;
     
     // Display in format: "in 2h 30m 45s"
-    timeRemainingElement.textContent = `in ${hours}h ${minutes}m ${seconds}s`;
+    timeRemainingElement.textContent = `in ${hours}h ${minutes}m`;
   };
   
   // Update immediately and then every second
